@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>املاک حیرانی | بهاران</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Tahoma,Arial,sans-serif;
+background:#f5f7fa;
+color:#222;
+}
+
+.wrap{
+max-width:480px;
+margin:auto;
+padding:24px 18px;
+}
+
+.card{
+background:white;
+border-radius:24px;
+padding:28px 20px;
+box-shadow:0 8px 30px #00000012;
+}
+
+.logo{
+text-align:center;
+font-size:42px;
+}
+
+h1{
+text-align:center;
+margin:8px 0 4px;
+font-size:27px;
+}
+
+.address{
+text-align:center;
+color:#777;
+font-size:13px;
+margin-bottom:20px;
+}
+
+.intro{
+text-align:center;
+color:#666;
+line-height:1.9;
+margin-bottom:22px;
+}
+
+.home-button{
+width:100%;
+padding:18px;
+margin-bottom:12px;
+border:2px solid #ddd;
+border-radius:16px;
+background:white;
+font-family:inherit;
+font-size:17px;
+cursor:pointer;
+}
+
+.home-button:hover{
+background:#f0f2f4;
+}
+
+.section{
+display:none;
+}
+
+.section.active{
+display:block;
+}
+
+.back{
+border:0;
+background:none;
+font-family:inherit;
+font-size:15px;
+cursor:pointer;
+margin-bottom:12px;
+}
+
+h2{
+margin-top:5px;
+}
+
+label{
+display:block;
+margin:13px 4px 7px;
+font-weight:bold;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:13px;
+font-family:inherit;
+font-size:16px;
+}
+
+textarea{
+min-height:90px;
+resize:vertical;
+line-height:1.8;
+}
+
+.features{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:9px;
+margin-top:8px;
+}
+
+.feature{
+border:1px solid #ddd;
+border-radius:12px;
+padding:11px;
+background:#fff;
+}
+
+.feature input{
+width:auto;
+margin-left:5px;
+}
+
+.submit{
+width:100%;
+margin-top:20px;
+padding:16px;
+border:0;
+border-radius:14px;
+background:#222;
+color:white;
+font-family:inherit;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.success{
+display:none;
+text-align:center;
+background:#eef8f0;
+border-radius:14px;
+padding:15px;
+margin-top:16px;
+color:#176b2b;
+line-height:1.8;
+}
+
+.error{
+display:none;
+text-align:center;
+background:#fff0f0;
+border-radius:14px;
+padding:15px;
+margin-top:16px;
+color:#a00000;
+line-height:1.8;
+}
+
+.list-item{
+border:1px solid #e2e2e2;
+border-radius:15px;
+padding:15px;
+margin-bottom:12px;
+line-height:2;
+}
+
+.note{
+text-align:center;
+color:#999;
+font-size:12px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="wrap">
+
+<div class="card">
+
+
+<!-- صفحه اصلی -->
+
+<div id="home" class="section active">
+
+<div class="logo">🏠</div>
+
+<h1>املاک حیرانی</h1>
+
+<div class="address">
+انتهای فرامرز عباسی، خیابان بهاران
+</div>
+
+<div class="intro">
+رهن و اجاره ملک در محدوده بهاران
+</div>
+
+<button class="home-button"
+onclick="showSection('submit')">
+🏠 بسپارید
+</button>
+
+<button class="home-button"
+onclick="showSection('listings')">
+🔎 پیدا کنید
+</button>
+
+<button class="home-button"
+onclick="showSection('request')">
+📋 درخواست ملک
+</button>
+
+</div>
+
+
+<!-- بسپارید -->
+
+<div id="submit" class="section">
+
+<button class="back"
+onclick="showSection('home')">
+← بازگشت
+</button>
+
+<h2>بسپارید</h2>
+
+<div class="intro">
+مشخصات ملک خود را وارد کنید تا با شما تماس بگیریم.
+</div>
+
+
+<form onsubmit="submitOwner(event)">
+
+
+<label>نوع ملک</label>
+
+<select id="ownerType">
+
+<option>آپارتمان</option>
+<option>خانه</option>
+<option>مغازه</option>
+<option>دفتر</option>
+<option>سایر</option>
+
+</select>
+
+
+<label>متراژ تقریبی</label>
+
+<input
+id="ownerSize"
+type="number"
+placeholder="مثلاً 90"
+>
+
+
+<label>طبقه</label>
+
+<input
+id="ownerFloor"
+type="text"
+placeholder="مثلاً دوم"
+>
+
+
+<label>محدوده</label>
+
+<input
+id="ownerArea"
+type="text"
+placeholder="مثلاً فجر"
+>
+
+
+<label>رهن</label>
+
+<input
+id="ownerDeposit"
+type="text"
+placeholder="مثلاً 100 میلیون"
+>
+
+
+<label>اجاره ماهانه</label>
+
+<input
+id="ownerRent"
+type="text"
+placeholder="مثلاً 20 میلیون"
+>
+
+
+<label>امکانات</label>
+
+
+<div class="features">
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="آسانسور"
+>
+
+آسانسور
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="پارکینگ"
+>
+
+پارکینگ
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="انباری"
+>
+
+انباری
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="MDF"
+>
+
+کابینت MDF
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="سرامیک"
+>
+
+کف سرامیک
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="کولر"
+>
+
+کولر
+
+</label>
+
+
+</div>
+
+
+<label>توضیحات</label>
+
+<textarea
+id="ownerNote"
+placeholder="مثلاً خوش‌نقشه، نورگیر و..."
+></textarea>
+
+
+<label>نام</label>
+
+<input
+id="ownerName"
+type="text"
+placeholder="نام شما"
+>
+
+
+<label>شماره موبایل</label>
+
+<input
+id="ownerPhone"
+type="tel"
+inputmode="numeric"
+placeholder="09xxxxxxxxx"
+required
+>
+
+
+<button
+class="submit"
+type="submit"
+>
+
+ثبت مشخصات ملک
+
+</button>
+
+
+</form>
+
+
+<div
+id="ownerSuccess"
+class="success"
+>
+
+مشخصات ملک با موفقیت ثبت شد.
+<br>
+به‌زودی با شما تماس می‌گیریم.
+
+</div>
+
+
+<div
+id="ownerError"
+class="error"
+>
+
+ثبت درخواست انجام نشد.
+<br>
+لطفاً دوباره تلاش کنید.
+
+</div>
+
+
+</div>
+
+
+<!-- پیدا کنید -->
+
+<div id="listings" class="section">
+
+
+<button
+class="back"
+onclick="showSection('home')"
+>
+
+← بازگشت
+
+</button>
+
+
+<h2>فایل‌های موجود</h2>
+
+
+<div id="listContainer">
+
+<div class="list-item">
+
+در حال دریافت فایل‌های موجود...
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- درخواست ملک -->
+
+<div id="request" class="section">
+
+
+<button
+class="back"
+onclick="showSection('home')"
+>
+
+← بازگشت
+
+</button>
+
+
+<h2>درخواست ملک</h2>
+
+
+<div class="intro">
+
+اگر ملک موردنظرتان را پیدا نکردید،
+مشخصاتش را برای ما بفرستید.
+
+</div>
+
+
+<form onsubmit="submitRequest(event)">
+
+
+<label>نوع ملک</label>
+
+<select id="requestType">
+
+<option>آپارتمان</option>
+<option>خانه</option>
+<option>مغازه</option>
+<option>دفتر</option>
+<option>سایر</option>
+
+</select>
+
+
+<label>متراژ تقریبی</label>
+
+<input
+id="requestSize"
+type="number"
+placeholder="مثلاً 90"
+>
+
+
+<label>محدوده موردنظر</label>
+
+<input
+id="requestArea"
+type="text"
+placeholder="مثلاً بهاران یا فجر"
+>
+
+
+<label>طبقه موردنظر (اختیاری)</label>
+
+<input
+id="requestFloor"
+type="text"
+placeholder="مثلاً دوم"
+>
+
+
+<label>بودجه رهن</label>
+
+<input
+id="requestDeposit"
+type="text"
+placeholder="مثلاً 100 میلیون"
+>
+
+
+<label>اجاره ماهانه</label>
+
+<input
+id="requestRent"
+type="text"
+placeholder="مثلاً 20 میلیون"
+>
+
+
+<label>امکانات موردنظر</label>
+
+
+<div class="features">
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="آسانسور"
+>
+
+آسانسور
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="پارکینگ"
+>
+
+پارکینگ
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="انباری"
+>
+
+انباری
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="MDF"
+>
+
+کابینت MDF
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="سرامیک"
+>
+
+کف سرامیک
+
+</label>
+
+
+<label class="feature">
+
+<input
+type="checkbox"
+value="کولر"
+>
+
+کولر
+
+</label>
+
+
+</div>
+
+
+<label>توضیحات</label>
+
+<textarea
+id="requestNote"
+placeholder="هر توضیح دیگری درباره ملکی که می‌خواهید"
+></textarea>
+
+
+<label>شماره موبایل</label>
+
+<input
+id="requestPhone"
+type="tel"
+inputmode="numeric"
+placeholder="09xxxxxxxxx"
+required
+>
+
+
+<button
+class="submit"
+type="submit"
+>
+
+ثبت درخواست
+
+</button>
+
+
+</form>
+
+
+<div
+id="requestSuccess"
+class="success"
+>
+
+درخواست شما با موفقیت ثبت شد.
+<br>
+در صورت وجود فایل مناسب با شما تماس می‌گیریم.
+
+</div>
+
+
+<div
+id="requestError"
+class="error"
+>
+
+ثبت درخواست انجام نشد.
+<br>
+لطفاً دوباره تلاش کنید.
+
+</div>
+
+
+</div>
+
+
+<div class="note">
+
+املاک حیرانی | بهاران
+
+</div>
+
+
+</div>
+</div>
+
+
+<script>
+
+
+/* آدرس Google Apps Script */
+
+const GOOGLE_SHEET_URL =
+"https://script.google.com/macros/s/AKfycbx6XMvIwE3MpwDGQwPBDUoeM7TOa0RCw04fJ0Pu4EGZb98Wn8l4ThcLPB3EQCUoGAF0Cg/exec";
+
+
+/* تغییر صفحه */
+
+function showSection(id){
+
+document
+.querySelectorAll('.section')
+.forEach(x =>
+x.classList.remove('active')
+);
+
+document
+.getElementById(id)
+.classList.add('active');
+
+window.scrollTo(0,0);
+
+
+/* هر بار وارد فایل‌های موجود شدیم،
+اطلاعات دوباره از شیت خوانده شود */
+
+if(id === 'listings'){
+loadListings();
+}
+
+}
+
+
+/* گرفتن امکانات انتخاب شده */
+
+function getFeatures(container){
+
+let result=[];
+
+container
+.querySelectorAll(
+'input[type="checkbox"]:checked'
+)
+.forEach(x => {
+
+result.push(x.value);
+
+});
+
+return result.join('، ');
+
+}
+
+
+/* ثبت ملک توسط مالک */
+
+async function submitOwner(e){
+
+e.preventDefault();
+
+const button =
+e.target.querySelector('.submit');
+
+button.disabled=true;
+button.innerText='در حال ثبت...';
+
+
+const data={
+
+requestType:'بسپارید',
+
+name:
+document.getElementById('ownerName')
+.value.trim(),
+
+mobile:
+document.getElementById('ownerPhone')
+.value.trim(),
+
+propertyType:
+document.getElementById('ownerType')
+.value,
+
+size:
+document.getElementById('ownerSize')
+.value,
+
+floor:
+document.getElementById('ownerFloor')
+.value,
+
+area:
+document.getElementById('ownerArea')
+.value,
+
+deposit:
+document.getElementById('ownerDeposit')
+.value,
+
+rent:
+document.getElementById('ownerRent')
+.value,
+
+features:
+getFeatures(
+document.getElementById('submit')
+),
+
+description:
+document.getElementById('ownerNote')
+.value
+
+};
+
+
+try{
+
+await fetch(
+GOOGLE_SHEET_URL,
+{
+method:'POST',
+
+headers:{
+'Content-Type':
+'text/plain;charset=utf-8'
+},
+
+body:
+JSON.stringify(data)
+
+}
+);
+
+
+document.getElementById(
+'ownerSuccess'
+).style.display='block';
+
+
+document.getElementById(
+'ownerError'
+).style.display='none';
+
+
+e.target.reset();
+
+
+}catch(err){
+
+console.log(err);
+
+document.getElementById(
+'ownerError'
+).style.display='block';
+
+
+document.getElementById(
+'ownerSuccess'
+).style.display='none';
+
+}
+
+
+button.disabled=false;
+button.innerText='ثبت مشخصات ملک';
+
+}
+
+
+/* ثبت درخواست مشتری */
+
+async function submitRequest(e){
+
+e.preventDefault();
+
+const button =
+e.target.querySelector('.submit');
+
+button.disabled=true;
+button.innerText='در حال ثبت...';
+
+
+const data={
+
+requestType:'درخواست ملک',
+
+mobile:
+document.getElementById('requestPhone')
+.value.trim(),
+
+propertyType:
+document.getElementById('requestType')
+.value,
+
+size:
+document.getElementById('requestSize')
+.value,
+
+floor:
+document.getElementById('requestFloor')
+.value,
+
+area:
+document.getElementById('requestArea')
+.value,
+
+deposit:
+document.getElementById('requestDeposit')
+.value,
+
+rent:
+document.getElementById('requestRent')
+.value,
+
+features:
+getFeatures(
+document.getElementById('request')
+),
+
+description:
+document.getElementById('requestNote')
+.value
+
+};
+
+
+try{
+
+await fetch(
+GOOGLE_SHEET_URL,
+{
+method:'POST',
+
+headers:{
+'Content-Type':
+'text/plain;charset=utf-8'
+},
+
+body:
+JSON.stringify(data)
+
+}
+);
+
+
+document.getElementById(
+'requestSuccess'
+).style.display='block';
+
+
+document.getElementById(
+'requestError'
+).style.display='none';
+
+
+e.target.reset();
+
+
+}catch(err){
+
+console.log(err);
+
+document.getElementById(
+'requestError'
+).style.display='block';
+
+
+document.getElementById(
+'requestSuccess'
+).style.display='none';
+
+}
+
+
+button.disabled=false;
+button.innerText='ثبت درخواست';
+
+}
+
+
+/* نمایش فایل‌های موجود */
+
+async function loadListings(){
+
+const container =
+document.getElementById(
+'listContainer'
+);
+
+
+container.innerHTML =
+'<div class="list-item">در حال دریافت فایل‌های موجود...</div>';
+
+
+try{
+
+
+const response =
+await fetch(
+GOOGLE_SHEET_URL
+);
+
+
+if(!response.ok){
+
+throw new Error(
+'خطا در دریافت اطلاعات'
+);
+
+}
+
+
+const data =
+await response.json();
+
+
+container.innerHTML='';
+
+
+let count=0;
+
+
+data.forEach(item => {
+
+
+/*
+فقط همین شرط مهم است:
+اگر نمایش = بله باشد،
+فایل روی سایت نمایش داده می‌شود.
+*/
+
+const show =
+String(
+item['نمایش'] || ''
+)
+.trim();
+
+
+if(show !== 'بله'){
+return;
+}
+
+
+count++;
+
+
+const div =
+document.createElement('div');
+
+
+div.className='list-item';
+
+
+div.innerHTML = `
+
+<b>
+${item['نوع ملک'] || 'ملک'}
+</b>
+
+<br>
+
+${item['متراژ']
+? 'حدود '+item['متراژ']+' متر | '
+: ''}
+
+${item['طبقه']
+? 'طبقه '+item['طبقه']+' | '
+: ''}
+
+${item['محدوده'] || ''}
+
+<br>
+
+${item['رهن']
+? 'رهن: '+item['رهن']+' | '
+: ''}
+
+${item['اجاره']
+? 'اجاره: '+item['اجاره']
+: ''}
+
+${item['امکانات']
+? '<br>امکانات: '+item['امکانات']
+: ''}
+
+${item['توضیحات']
+? '<br>'+item['توضیحات']
+: ''}
+
+`;
+
+
+container.appendChild(div);
+
+
+});
+
+
+if(count === 0){
+
+container.innerHTML =
+'<div class="list-item">' +
+'در حال حاضر فایل فعالی موجود نیست.' +
+'</div>';
+
+}
+
+
+}catch(err){
+
+console.log(err);
+
+
+container.innerHTML =
+'<div class="list-item">' +
+'فعلاً امکان دریافت فایل‌ها وجود ندارد.' +
+'</div>';
+
+}
+
+}
+
+
+/* اجرای اولیه */
+
+loadListings();
+
+</script>
+
+</body>
+</html>
