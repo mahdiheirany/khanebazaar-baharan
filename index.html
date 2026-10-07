@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>املاک حیرانی | انتهای فرامرز، ابتدای بهاران</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Tahoma,Arial,sans-serif;
+    background:linear-gradient(180deg,#fafafa 0%,#eeeeee 100%);
+    color:#171717;
+}
+
+.container{
+    width:min(92%,720px);
+    margin:auto;
+}
+
+header{
+    padding:48px 0 30px;
+    text-align:center;
+}
+
+.brand{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-2px;
+    color:#111;
+}
+
+.address{
+    margin-top:12px;
+    color:#777;
+    font-size:15px;
+}
+
+main{
+    padding-bottom:30px;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e2e2e2;
+    border-radius:26px;
+    padding:26px;
+    margin:16px 0;
+    box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.home-card{
+    padding:24px;
+}
+
+.menu{
+    display:grid;
+    gap:15px;
+}
+
+/* عنوان بالای دو دکمه */
+
+.menu-title{
+    text-align:center;
+    margin-bottom:5px;
+}
+
+.menu-title h2{
+    margin:0 0 7px;
+    font-size:24px;
+    font-weight:900;
+    color:#171717;
+}
+
+.menu-title p{
+    margin:0;
+    color:#777;
+    font-size:14px;
+}
+
+/* دکمه های اصلی */
+
+.big-btn{
+    width:100%;
+    border:0;
+    border-radius:20px;
+    padding:23px 20px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff8a00,#f26a00);
+    color:#fff;
+    transition:.2s ease;
+    text-align:right;
+    box-shadow:0 10px 24px rgba(242,106,0,.22);
+}
+
+.big-btn:hover{
+    background:linear-gradient(135deg,#ff9800,#ed6500);
+    transform:translateY(-2px);
+}
+
+.big-btn:active{
+    transform:scale(.985);
+}
+
+.plus{
+    float:left;
+    font-size:27px;
+    line-height:18px;
+    font-weight:normal;
+    color:#fff;
+}
+
+/* فرم ها */
+
+.form-section{
+    display:none;
+}
+
+.form-section.active{
+    display:block;
+}
+
+.back{
+    border:0;
+    background:#f0f0f0;
+    padding:10px 15px;
+    margin-bottom:20px;
+    border-radius:12px;
+    font-size:14px;
+    cursor:pointer;
+    color:#444;
+}
+
+.back:hover{
+    background:#e5e5e5;
+}
+
+.card h2{
+    margin:0 0 9px;
+    font-size:23px;
+}
+
+.card p{
+    margin:0 0 21px;
+    color:#777;
+    font-size:14px;
+    line-height:1.9;
+}
+
+label{
+    display:block;
+    margin:17px 0 7px;
+    font-weight:bold;
+    font-size:14px;
+    color:#333;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #d9d9d9;
+    background:#f8f8f8;
+    border-radius:15px;
+    padding:16px;
+    font-size:16px;
+    font-family:inherit;
+    outline:none;
+    color:#222;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:#aaa;
+    font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff8a00;
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(255,138,0,.09);
+}
+
+textarea{
+    min-height:110px;
+    resize:vertical;
+}
+
+/* دکمه ثبت */
+
+.submit{
+    width:100%;
+    margin-top:23px;
+    border:0;
+    border-radius:16px;
+    background:linear-gradient(135deg,#ff8a00,#f26a00);
+    color:#fff;
+    padding:18px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(242,106,0,.18);
+}
+
+.submit:active{
+    transform:scale(.985);
+}
+
+.submit:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+/* فایل های موجود */
+
+.listing{
+    position:relative;
+    overflow:hidden;
+    border:1px solid #eee4d8;
+    border-radius:21px;
+    padding:21px 20px 19px;
+    margin-top:14px;
+    background:linear-gradient(145deg,#fffdf9,#fff9f1);
+    box-shadow:0 7px 22px rgba(80,55,25,.07);
+}
+
+.listing::before{
+    content:"";
+    position:absolute;
+    right:0;
+    top:0;
+    bottom:0;
+    width:5px;
+    background:linear-gradient(180deg,#ff9800,#f26a00);
+}
+
+.listing-title{
+    font-weight:900;
+    font-size:19px;
+    margin-bottom:10px;
+    color:#222;
+}
+
+.listing-text{
+    color:#666;
+    line-height:2;
+    font-size:14px;
+}
+
+.price-box{
+    margin-top:14px;
+    padding-top:13px;
+    border-top:1px solid #eee4d8;
+    font-weight:bold;
+    color:#d95f00;
+    line-height:2;
+}
+
+.price-item{
+    display:inline-block;
+    margin-left:14px;
+}
+
+.empty{
+    text-align:center;
+    padding:27px 10px;
+    color:#999;
+}
+
+/* تماس */
+
+.contact-card{
+    text-align:center;
+}
+
+.contact-title{
+    font-size:19px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.contact-text{
+    color:#777;
+    font-size:13px;
+    margin-bottom:19px;
+}
+
+.contact-btn{
+    display:block;
+    text-decoration:none;
+    border-radius:15px;
+    padding:15px;
+    background:#f0f0f0;
+    color:#222;
+    border:1px solid #d9d9d9;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.contact-btn:hover{
+    background:#e8e8e8;
+}
+
+.contact-number{
+    display:block;
+    margin-top:6px;
+    font-size:14px;
+    direction:ltr;
+    color:#555;
+}
+
+/* فوتر */
+
+footer{
+    text-align:center;
+    color:#777;
+    font-size:13px;
+    padding:8px 0 30px;
+}
+
+.footer-name{
+    font-weight:bold;
+    color:#333;
+}
+
+/* صفحه تایید */
+
+.success-screen{
+    display:none;
+    text-align:center;
+}
+
+.success-box{
+    background:#e9f8ee;
+    border:1px solid #b9e6c7;
+    border-radius:28px;
+    padding:42px 25px;
+    box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.success-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 20px;
+    border-radius:50%;
+    background:#25a957;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    font-weight:bold;
+}
+
+.success-title{
+    font-size:25px;
+    font-weight:900;
+    color:#176b37;
+    margin-bottom:12px;
+}
+
+.success-text{
+    color:#4d765b;
+    font-size:14px;
+    line-height:2;
+}
+
+.tracking-title{
+    margin-top:25px;
+    font-size:14px;
+    color:#4d765b;
+}
+
+.tracking-code{
+    margin-top:8px;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:3px;
+    direction:ltr;
+    color:#176b37;
+}
+
+.success-home{
+    margin-top:25px;
+    border:0;
+    border-radius:15px;
+    background:#176b37;
+    color:white;
+    padding:15px 25px;
+    font-family:inherit;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* موبایل */
+
+@media(max-width:500px){
+
+    .brand{
+        font-size:35px;
+    }
+
+    header{
+        padding-top:38px;
+    }
+
+    .card{
+        padding:21px;
+        border-radius:22px;
+    }
+
+    .big-btn{
+        padding:22px 18px;
+        font-size:17px;
+    }
+
+    .menu-title h2{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="brand">
+        املاک حیرانی
+    </div>
+
+    <div class="address">
+        انتهای فرامرز، ابتدای بهاران
+    </div>
+
+</header>
+
+<main>
+
+<!-- صفحه اصلی -->
+
+<section id="home" class="form-section active">
+
+    <div class="card home-card">
+
+        <div class="menu">
+
+            <div class="menu-title">
+
+                <h2>
+                    در خدمتیم 🌱
+                </h2>
+
+                <p>
+                    دنبال ملک می‌گردید یا می‌خواید بسپرید؟
+                </p>
+
+            </div>
+
+            <button class="big-btn"
+                    onclick="showSection('search')">
+
+                🏠 دنبال رهن و اجاره می‌گردم
+
+            </button>
+
+            <button class="big-btn"
+                    onclick="showSection('submit')">
+
+                🏠 رهن و اجاره دارم، می‌خوام بسپرم
+
+                <span class="plus">
+                    ＋
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- فایل های موجود -->
+
+    <div class="card">
+
+        <h2>
+            فایل‌های موجود
+        </h2>
+
+        <p>
+            تعدادی از فایل‌های فعال املاک حیرانی
+        </p>
+
+        <div id="listings">
+
+            <div class="empty">
+                در حال دریافت فایل‌ها...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- تماس -->
+
+    <div class="card contact-card">
+
+        <div class="contact-title">
+            املاک حیرانی
+        </div>
+
+        <div class="contact-text">
+            برای هماهنگی و دریافت اطلاعات بیشتر
+        </div>
+
+        <a class="contact-btn"
+           href="tel:09159299556">
+
+            📱 09159299556
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- فرم جستجوی رهن و اجاره -->
+
+<section id="search" class="form-section">
+
+    <div class="card">
+
+        <button class="back"
+                onclick="showSection('home')">
+
+            ← برگشت
+
+        </button>
+
+        <h2>
+            دنبال رهن و اجاره می‌گردم
+        </h2>
+
+        <p>
+            مشخصات موردنظرتان را وارد کنید تا با شما تماس بگیریم.
+        </p>
+
+        <form onsubmit="sendForm(event,'جستجوی ملک')">
+
+            <label>
+                نام
+            </label>
+
+            <input type="text"
+                   name="نام"
+                   placeholder="نام شما"
+                   required>
+
+
+            <label>
+                شماره موبایل
+            </label>
+
+            <input type="tel"
+                   name="شماره موبایل"
+                   inputmode="numeric"
+                   pattern="[0-9۰-۹]{10,11}"
+                   placeholder="مثلاً 09151234567"
+                   required>
+
+
+            <label>
+                نوع ملک
+            </label>
+
+            <select name="نوع ملک" required>
+
+                <option value="">
+                    انتخاب کنید
+                </option>
+
+                <option>
+                    آپارتمان
+                </option>
+
+                <option>
+                    خانه
+                </option>
+
+                <option>
+                    مغازه
+                </option>
+
+                <option>
+                    زمین
+                </option>
+
+                <option>
+                    دفتر کار
+                </option>
+
+                <option>
+                    سایر
+                </option>
+
+            </select>
+
+
+            <label>
+                متراژ تقریبی
+            </label>
+
+            <input type="number"
+                   name="متراژ"
+                   inputmode="numeric"
+                   min="1"
+                   placeholder="مثلاً ۹۰">
+
+
+            <label>
+                محدوده
+            </label>
+
+            <input type="text"
+                   name="محدوده"
+                   placeholder="مثلاً بهاران">
+
+
+            <label>
+                توضیحات
+            </label>
+
+            <textarea name="توضیحات"
+                      placeholder="مثلاً دو خوابه، طبقه دوم و..."></textarea>
+
+
+            <button class="submit"
+                    type="submit">
+
+                ثبت درخواست
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- فرم سپردن رهن و اجاره -->
+
+<section id="submit" class="form-section">
+
+    <div class="card">
+
+        <button class="back"
+                onclick="showSection('home')">
+
+            ← برگشت
+
+        </button>
+
+        <h2>
+            رهن و اجاره دارم، می‌خوام بسپرم
+        </h2>
+
+        <p>
+            مشخصات اولیه ملک را وارد کنید؛
+            برای هماهنگی با شما تماس می‌گیریم.
+        </p>
+
+        <form onsubmit="sendForm(event,'سپردن ملک')">
+
+            <label>
+                نام
+            </label>
+
+            <input type="text"
+                   name="نام"
+                   placeholder="نام شما"
+                   required>
+
+
+            <label>
+                شماره موبایل
+            </label>
+
+            <input type="tel"
+                   name="شماره موبایل"
+                   inputmode="numeric"
+                   pattern="[0-9۰-۹]{10,11}"
+                   placeholder="مثلاً 09151234567"
+                   required>
+
+
+            <label>
+                نوع ملک
+            </label>
+
+            <select name="نوع ملک" required>
+
+                <option value="">
+                    انتخاب کنید
+                </option>
+
+                <option>
+                    آپارتمان
+                </option>
+
+                <option>
+                    خانه
+                </option>
+
+                <option>
+                    مغازه
+                </option>
+
+                <option>
+                    زمین
+                </option>
+
+                <option>
+                    دفتر کار
+                </option>
+
+                <option>
+                    سایر
+                </option>
+
+            </select>
+
+
+            <label>
+                متراژ
+            </label>
+
+            <input type="number"
+                   name="متراژ"
+                   inputmode="numeric"
+                   min="1"
+                   placeholder="مثلاً ۹۰">
+
+
+            <label>
+                محدوده
+            </label>
+
+            <input type="text"
+                   name="محدوده"
+                   placeholder="مثلاً بهاران">
+
+
+            <label>
+                میزان رهن
+            </label>
+
+            <input type="number"
+                   name="رهن"
+                   inputmode="numeric"
+                   min="0"
+                   placeholder="مثلاً ۲۰۰">
+
+
+            <label>
+                میزان اجاره
+            </label>
+
+            <input type="number"
+                   name="اجاره"
+                   inputmode="numeric"
+                   min="0"
+                   placeholder="مثلاً ۱۸">
+
+
+            <label>
+                توضیحات
+            </label>
+
+            <textarea name="توضیحات"
+                      placeholder="توضیحات تکمیلی ملک..."></textarea>
+
+
+            <label>
+                نمایش فایل در سایت
+            </label>
+
+            <select name="نمایش فایل" required>
+
+                <option value="خیر">
+                    خیر
+                </option>
+
+                <option value="بله">
+                    بله
+                </option>
+
+            </select>
+
+
+            <button class="submit"
+                    type="submit">
+
+                ثبت اطلاعات ملک
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- صفحه موفقیت -->
+
+<section id="success"
+         class="success-screen">
+
+    <div class="success-box">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <div class="success-title">
+            ثبت با موفقیت انجام شد
+        </div>
+
+        <div class="success-text">
+
+            اطلاعات شما دریافت شد.<br>
+            به‌زودی با شما تماس می‌گیریم.
+
+        </div>
+
+        <div class="tracking-title">
+            کد پیگیری شما
+        </div>
+
+        <div id="trackingCode"
+             class="tracking-code">
+
+            ----
+
+        </div>
+
+        <button class="success-home"
+                onclick="showSection('home')">
+
+            بازگشت به صفحه اصلی
+
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <span class="footer-name">
+        املاک حیرانی
+    </span>
+
+    • 09159299556
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* آدرس Google Apps Script — بدون تغییر */
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwYT9IDyRDb6z4Ch5oew5W2_vQrmegGGcotAeP-xHhkYdwfkomX3EHA8iAsSv1RLAgH/exec";
+
+
+/* نمایش بخش */
+
+function showSection(id){
+
+    document.querySelectorAll(".form-section")
+        .forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+    document.getElementById(id)
+        .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ساخت کد پیگیری */
+
+function getTrackingCode(phone){
+
+    const normalized = String(phone)
+
+        .replace(/[۰-۹]/g, d =>
+            String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+        )
+
+        .replace(/\D/g,"");
+
+    return normalized.slice(-4);
+
+}
+
+
+/* ارسال فرم */
+
+async function sendForm(event, requestType){
+
+    event.preventDefault();
+
+    const form = event.target;
+
+    const button = form.querySelector(".submit");
+
+    button.disabled = true;
+
+    button.innerText =
+        "در حال ارسال...";
+
+    const formData =
+        new FormData(form);
+
+    const data = {};
+
+    formData.forEach((value,key) => {
+
+        data[key] = value;
+
+    });
+
+    data["نوع درخواست"] =
+        requestType;
+
+    data["تاریخ"] =
+        new Date().toLocaleString("fa-IR");
+
+
+    const trackingCode =
+        getTrackingCode(
+            data["شماره موبایل"]
+        );
+
+
+    try{
+
+        await fetch(
+            SCRIPT_URL,
+            {
+                method:"POST",
+                mode:"no-cors",
+                body:JSON.stringify(data)
+            }
+        );
+
+
+        form.reset();
+
+
+        document.getElementById(
+            "trackingCode"
+        ).innerText =
+            trackingCode || "----";
+
+
+        showSection("success");
+
+
+    }catch(error){
+
+        alert(
+            "در ارسال اطلاعات مشکلی پیش آمد.\nلطفاً دوباره تلاش کنید."
+        );
+
+        console.error(error);
+
+    }finally{
+
+        button.disabled = false;
+
+        button.innerText =
+            requestType === "سپردن ملک"
+            ? "ثبت اطلاعات ملک"
+            : "ثبت درخواست";
+
+    }
+
+}
+
+
+/* تبدیل اعداد فارسی به انگلیسی */
+
+function normalizeNumber(value){
+
+    return String(value)
+
+        .replace(/[۰-۹]/g, d =>
+            String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+        )
+
+        .replace(/,/g,"")
+
+        .trim();
+
+}
+
+
+/* فرمت قیمت */
+
+function formatPrice(value){
+
+    if(
+        value === null ||
+        value === undefined ||
+        String(value).trim() === ""
+    ){
+
+        return "";
+
+    }
+
+
+    const normalized =
+        normalizeNumber(value);
+
+
+    if(normalized === "")
+        return "";
+
+
+    const number =
+        Number(normalized);
+
+
+    if(!Number.isFinite(number))
+        return String(value);
+
+
+    return number.toLocaleString("fa-IR");
+
+}
+
+
+/* دریافت فایل های موجود */
+
+async function loadListings(){
+
+    const box =
+        document.getElementById("listings");
+
+
+    try{
+
+        const response =
+            await fetch(SCRIPT_URL);
+
+
+        const listings =
+            await response.json();
+
+
+        box.innerHTML = "";
+
+
+        if(
+            !Array.isArray(listings) ||
+            listings.length === 0
+        ){
+
+            box.innerHTML =
+                '<div class="empty">فعلاً فایل فعالی موجود نیست.</div>';
+
+            return;
+
+        }
+
+
+        let visibleCount = 0;
+
+
+        listings.forEach(item => {
+
+
+            if(
+                String(item["نمایش فایل"]).trim()
+                !== "بله"
+            ){
+
+                return;
+
+            }
+
+
+            visibleCount++;
+
+
+            const div =
+                document.createElement("div");
+
+
+            div.className =
+                "listing";
+
+
+            const type =
+                item["نوع ملک"] || "ملک";
+
+
+            const area =
+                item["متراژ"]
+
+                ? normalizeNumber(
+                    item["متراژ"]
+                  ) + " متر"
+
+                : "";
+
+
+            const location =
+                item["محدوده"]
+
+                ? "محدوده " +
+                  item["محدوده"]
+
+                : "";
+
+
+            const rent =
+                formatPrice(
+                    item["رهن"]
+                );
+
+
+            const monthly =
+                formatPrice(
+                    item["اجاره"]
+                );
+
+
+            const description =
+                item["توضیحات"] || "";
+
+
+            let html = `
+
+                <div class="listing-title">
+                    ${type}
+                </div>
+
+                <div class="listing-text">
+
+                    ${area}
+
+                    ${area && location
+                        ? " • "
+                        : ""}
+
+                    ${location}
+
+                </div>
+
+            `;
+
+
+            if(rent || monthly){
+
+                html += `
+
+                    <div class="price-box">
+
+                `;
+
+
+                if(rent){
+
+                    html += `
+
+                        <span class="price-item">
+                            رهن: ${rent} تومان
+                        </span>
+
+                    `;
+
+                }
+
+
+                if(monthly){
+
+                    html += `
+
+                        <span class="price-item">
+                            اجاره: ${monthly} تومان
+                        </span>
+
+                    `;
+
+                }
+
+
+                html += `
+
+                    </div>
+
+                `;
+
+            }
+
+
+            if(description){
+
+                html += `
+
+                    <div class="listing-text"
+                         style="margin-top:8px;">
+
+                        ${description}
+
+                    </div>
+
+                `;
+
+            }
+
+
+            div.innerHTML =
+                html;
+
+
+            box.appendChild(div);
+
+        });
+
+
+        if(visibleCount === 0){
+
+            box.innerHTML =
+                '<div class="empty">فعلاً فایل فعالی موجود نیست.</div>';
+
+        }
+
+
+    }catch(error){
+
+        box.innerHTML =
+            '<div class="empty">فایل‌های موجود فعلاً قابل دریافت نیستند.</div>';
+
+        console.log(error);
+
+    }
+
+}
+
+
+/* اجرای دریافت فایل ها */
+
+loadListings();
+
+</script>
+
+</body>
+</html>
