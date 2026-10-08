@@ -1,0 +1,1077 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>املاک حیرانی</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Tahoma,Arial,sans-serif;
+  background:linear-gradient(135deg,#fffaf3,#f7f7f7);
+  color:#222
+}
+.wrap{max-width:760px;margin:auto;padding:18px}
+header{
+  background:#fff;border-radius:22px;padding:22px 18px;text-align:center;
+  box-shadow:0 8px 28px rgba(80,55,25,.08);margin-bottom:18px
+}
+.logo{font-size:30px;font-weight:900}
+.sub{margin-top:8px;font-size:14px;color:#777}
+.address{margin-top:6px;font-size:12px;color:#999}
+.card{
+  background:#fff;border-radius:22px;padding:22px 18px;
+  box-shadow:0 8px 28px rgba(80,55,25,.07)
+}
+h1{font-size:23px;margin:0 0 8px;text-align:center}
+.intro{text-align:center;color:#777;margin:0 0 20px;font-size:14px}
+.big-btn{
+  width:100%;border:0;border-radius:17px;padding:17px 14px;margin:7px 0;
+  background:linear-gradient(135deg,#ff9800,#f27500);
+  color:#fff;font-size:17px;font-weight:900;cursor:pointer;
+  box-shadow:0 7px 18px rgba(242,117,0,.18)
+}
+.big-btn:active{transform:scale(.99)}
+.back{
+  border:0;background:none;color:#f27500;font-size:14px;font-weight:800;
+  cursor:pointer;padding:0 0 15px
+}
+.choice-title{text-align:center;margin:4px 0 18px}
+.choice-title h2{font-size:20px;margin:0 0 7px}
+.choice-title p{margin:0;color:#777;font-size:13px}
+.section{display:none}.section.active{display:block}
+.listings{margin-top:20px}
+.listings-head{font-size:19px;font-weight:900;margin-bottom:10px}
+.listings-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start
+}
+.listing-group{min-width:0}
+.listing-group-title{
+  font-size:16px;font-weight:900;margin:2px 0 8px
+}
+.listing{
+  position:relative;overflow:hidden;border:1px solid #eee4d8;
+  border-radius:18px;padding:14px 13px;margin-top:9px;
+  background:linear-gradient(145deg,#fffdf9,#fff9f1);
+  box-shadow:0 6px 18px rgba(80,55,25,.06)
+}
+.listing-title{font-weight:900;font-size:15px;margin-bottom:7px}
+.listing-text{font-size:12px;line-height:1.9;color:#666}
+.empty{
+  border:1px dashed #e7d8c5;border-radius:16px;padding:15px 10px;
+  text-align:center;color:#999;font-size:12px;background:#fffaf3
+}
+.contact{
+  margin-top:16px;padding:16px;border-radius:18px;background:#fff;
+  border:1px solid #eee4d8;text-align:center;font-weight:900
+}
+.phone{color:#f27500;font-size:20px;margin-top:7px;direction:ltr}
+
+@media(max-width:700px){
+  .listings{
+    overflow-x:hidden;
+    padding-bottom:0;
+  }
+  .listings-grid{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    width:100%;
+    min-width:0;
+    gap:8px;
+  }
+  .listing-group-title{
+    font-size:13px;
+    white-space:nowrap;
+  }
+  .listing{
+    padding:10px 8px;
+    border-radius:14px;
+  }
+  .listing-title{font-size:12px}
+  .listing-text{font-size:10px;line-height:1.7}
+}
+
+/* Functional form styling only — does not modify the approved homepage appearance. */
+label{display:block;margin:17px 0 7px;font-weight:bold;font-size:14px;color:#333}
+input,select,textarea{
+  width:100%;border:1px solid #eadfD2;border-radius:14px;
+  padding:13px 14px;font-family:inherit;font-size:14px;
+  background:#fff;outline:none
+}
+input::placeholder,textarea::placeholder{color:#aaa;font-size:13px}
+input:focus,select:focus,textarea:focus{
+  border-color:#f27500;
+  box-shadow:0 0 0 3px rgba(242,117,0,.10)
+}
+textarea{min-height:110px;resize:vertical}
+.submit{
+  width:100%;border:0;border-radius:17px;padding:16px 14px;margin-top:20px;
+  background:linear-gradient(135deg,#ff9800,#f27500);
+  color:#fff;font-family:inherit;font-size:16px;font-weight:900;
+  cursor:pointer;box-shadow:0 7px 18px rgba(242,117,0,.18)
+}
+.submit:disabled{opacity:.6;cursor:not-allowed}
+.success-screen{display:none;text-align:center}
+.success-screen.active{display:block}
+.success-box{
+  background:#fff;border-radius:22px;padding:30px 18px;
+  box-shadow:0 8px 28px rgba(80,55,25,.07)
+}
+.success-icon{font-size:46px;font-weight:900;color:#2e9b55}
+.success-title{font-size:25px;font-weight:900;margin-bottom:12px}
+.success-text{color:#666;font-size:14px;line-height:2}
+.thanks{margin-top:14px;font-weight:800}
+.tracking-card{
+  margin:22px auto 0;max-width:360px;border:1px dashed #e7d8c5;
+  border-radius:18px;padding:16px;background:#fffaf3
+}
+.tracking-title{font-size:13px;color:#777}
+.tracking-code{
+  margin-top:7px;font-size:32px;font-weight:900;
+  letter-spacing:5px;direction:ltr;color:#f27500
+}
+.tracking-note{margin-top:7px;color:#999;font-size:12px}
+.success-contact-text{margin-top:22px;font-size:13px;color:#777}
+.success-contact{
+  display:block;margin:9px auto 0;max-width:360px;text-decoration:none;
+  border-radius:17px;padding:15px;
+  background:linear-gradient(135deg,#ff9800,#f27500);
+  color:#fff;font-family:inherit;font-size:15px;font-weight:bold
+}
+.success-contact-number{
+  display:block;margin-top:5px;direction:ltr;font-size:13px
+}
+.success-home{
+  width:100%;max-width:360px;margin:11px auto 0;
+  border:1px solid #eee4d8;border-radius:17px;background:#fff;
+  color:#f27500;padding:15px 20px;font-family:inherit;
+  font-size:14px;font-weight:bold;cursor:pointer
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <div class="logo">املاک حیرانی</div>
+  <div class="sub">سامانه خرید و فروش و رهن و اجاره املاک حیرانی</div>
+  <div class="address">انتهای فرامرز، ابتدای بهاران</div>
+</header>
+
+<section id="home" class="section active">
+<div class="card">
+
+  <h1>در خدمتیم 🌱</h1>
+  <p class="intro">دنبال ملک می‌گردید یا می‌خواید بسپرید؟</p>
+
+  <button class="big-btn" onclick="show('search')">
+    دنبال رهن و اجاره می‌گردم
+  </button>
+
+  <button class="big-btn" onclick="show('buy')">
+    دنبال خرید هستم
+  </button>
+
+  <button class="big-btn" onclick="show('submitChoice')">
+    ملک دارم، می‌خوام بسپرم ＋
+  </button>
+
+  <div class="listings">
+    <div class="listings-head">فایل‌های موجود</div>
+
+    <div class="listings-grid">
+
+      <div class="listing-group">
+        <div class="listing-group-title">🏠 رهن و اجاره</div>
+
+        <div id="rentListings">
+
+          <div class="listing">
+            <div class="listing-title">آپارتمان ۸۵ متری</div>
+            <div class="listing-text">
+              بهاران · ۲ خواب<br>
+              رهن: ۳۰۰ میلیون<br>
+              اجاره: ۸ میلیون
+            </div>
+          </div>
+
+          <div class="listing">
+            <div class="listing-title">آپارتمان ۱۱۰ متری</div>
+            <div class="listing-text">
+              فرامرز · ۲ خواب<br>
+              رهن: ۵۰۰ میلیون<br>
+              اجاره: ۱۰ میلیون
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="listing-group">
+        <div class="listing-group-title">🏷️ خرید و فروش</div>
+
+        <div id="buySellListings">
+
+          <div class="listing">
+            <div class="listing-title">آپارتمان ۹۰ متری</div>
+            <div class="listing-text">
+              بهاران · ۲ خواب<br>
+              قیمت: ۵ میلیارد
+            </div>
+          </div>
+
+          <div class="listing">
+            <div class="listing-title">خانه ۱۳۰ متری</div>
+            <div class="listing-text">
+              محدوده فرامرز<br>
+              قیمت: ۷ میلیارد
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="contact">
+    📞 همین حالا تماس بگیرید
+    <div class="phone">09159299556</div>
+  </div>
+
+</div>
+</section>
+
+<section id="submitChoice" class="section">
+<div class="card">
+
+  <button class="back" onclick="show('home')">← برگشت</button>
+
+  <div class="choice-title">
+    <h2>ملک‌تون رو می‌خواید بسپارید؟</h2>
+    <p>نوع ملک را برای سپردن انتخاب کنید.</p>
+  </div>
+
+  <button class="big-btn" onclick="show('submit')">
+    🏠 ملک برای رهن و اجاره دارم
+  </button>
+
+  <button class="big-btn" onclick="show('sell')">
+    🏷️ ملک برای فروش دارم
+  </button>
+
+</div>
+</section>
+
+<!-- جستجوی رهن و اجاره -->
+<section id="search" class="section">
+<div class="card">
+
+  <button class="back" onclick="show('home')">← برگشت</button>
+
+  <h2>دنبال رهن و اجاره می‌گردم</h2>
+  <p>مشخصات موردنظرتان را وارد کنید تا با شما تماس بگیریم.</p>
+
+  <form onsubmit="sendForm(event,'جستجوی ملک')">
+
+    <label>نام</label>
+    <input type="text" name="نام" placeholder="نام شما" required>
+
+    <label>شماره موبایل</label>
+    <input
+      type="tel"
+      name="شماره موبایل"
+      inputmode="numeric"
+      pattern="[0-9۰-۹]{10,11}"
+      placeholder="مثلاً 09151234567"
+      required
+    >
+
+    <label>نوع ملک</label>
+    <select name="نوع ملک" required>
+      <option value="">انتخاب کنید</option>
+      <option>آپارتمان</option>
+      <option>خانه</option>
+      <option>مغازه</option>
+      <option>زمین</option>
+      <option>دفتر کار</option>
+      <option>سایر</option>
+    </select>
+
+    <label>متراژ تقریبی</label>
+    <input
+      type="number"
+      name="متراژ"
+      inputmode="numeric"
+      min="1"
+      placeholder="مثلاً ۹۰"
+    >
+
+    <label>محدوده</label>
+    <input type="text" name="محدوده" placeholder="مثلاً بهاران">
+
+    <label>توضیحات</label>
+    <textarea
+      name="توضیحات"
+      placeholder="مثلاً دو خوابه، طبقه دوم و..."
+    ></textarea>
+
+    <button class="submit" type="submit">
+      ثبت درخواست
+    </button>
+
+  </form>
+</div>
+</section>
+
+<!-- سپردن رهن و اجاره -->
+<section id="submit" class="section">
+<div class="card">
+
+  <button class="back" onclick="show('submitChoice')">← برگشت</button>
+
+  <h2>رهن و اجاره دارم، می‌خوام بسپرم</h2>
+  <p>مشخصات اولیه ملک را وارد کنید؛ برای هماهنگی با شما تماس می‌گیریم.</p>
+
+  <form onsubmit="sendForm(event,'سپردن ملک')">
+
+    <label>نام</label>
+    <input type="text" name="نام" placeholder="نام شما" required>
+
+    <label>شماره موبایل</label>
+    <input
+      type="tel"
+      name="شماره موبایل"
+      inputmode="numeric"
+      pattern="[0-9۰-۹]{10,11}"
+      placeholder="مثلاً 09151234567"
+      required
+    >
+
+    <label>نوع ملک</label>
+    <select name="نوع ملک" required>
+      <option value="">انتخاب کنید</option>
+      <option>آپارتمان</option>
+      <option>خانه</option>
+      <option>مغازه</option>
+      <option>زمین</option>
+      <option>دفتر کار</option>
+      <option>سایر</option>
+    </select>
+
+    <label>متراژ</label>
+    <input
+      type="number"
+      name="متراژ"
+      inputmode="numeric"
+      min="1"
+      placeholder="مثلاً ۹۰"
+    >
+
+    <label>محدوده</label>
+    <input type="text" name="محدوده" placeholder="مثلاً بهاران">
+
+    <label>میزان رهن (میلیون تومان)</label>
+    <input
+      type="number"
+      name="رهن"
+      inputmode="numeric"
+      min="0"
+      placeholder="مثلاً ۲۰۰"
+    >
+
+    <label>میزان اجاره (میلیون تومان)</label>
+    <input
+      type="number"
+      name="اجاره"
+      inputmode="numeric"
+      min="0"
+      placeholder="مثلاً ۱۸"
+    >
+
+    <label>توضیحات</label>
+    <textarea
+      name="توضیحات"
+      placeholder="توضیحات تکمیلی ملک..."
+    ></textarea>
+
+    <label>نمایش فایل در سایت</label>
+    <select name="نمایش فایل" required>
+      <option value="خیر">خیر</option>
+      <option value="بله">بله</option>
+    </select>
+
+    <button class="submit" type="submit">
+      ثبت اطلاعات ملک
+    </button>
+
+  </form>
+</div>
+</section>
+
+<!-- بخش خرید و فروش -->
+<section id="buySell" class="section">
+<div class="card">
+
+  <button class="back" onclick="showSection('home')">
+    ← برگشت
+  </button>
+
+  <div class="menu-title">
+    <h2>خرید و فروش 🏷️</h2>
+    <p>دنبال ملک می‌گردید یا ملکی برای فروش دارید؟</p>
+  </div>
+
+  <div class="menu" style="margin-top:20px;">
+
+    <button class="big-btn" onclick="showSection('buy')">
+      🔎 دنبال ملک برای خرید هستم
+      <span class="plus">＋</span>
+    </button>
+
+    <button class="big-btn" onclick="showSection('sell')">
+      🏷️ ملک برای فروش دارم، می‌خوام بسپرم
+      <span class="plus">＋</span>
+    </button>
+
+  </div>
+
+  <div id="buySellListings">
+    <div class="listings-title">
+      🏷️ فایل‌های خرید و فروش
+    </div>
+    <div class="empty">
+      در حال دریافت فایل‌ها...
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- خرید ملک -->
+<section id="buy" class="section">
+<div class="card">
+
+  <button class="back" onclick="show('home')">← برگشت</button>
+
+  <h2>دنبال ملک برای خرید هستم</h2>
+
+  <p>
+    مشخصات ملک موردنظرتان را وارد کنید تا برای پیدا کردن گزینه مناسب
+    با شما تماس بگیریم.
+  </p>
+
+  <form onsubmit="sendForm(event,'خرید ملک')">
+
+    <label>نام</label>
+    <input type="text" name="نام" placeholder="نام شما" required>
+
+    <label>شماره موبایل</label>
+    <input
+      type="tel"
+      name="شماره موبایل"
+      inputmode="numeric"
+      pattern="[0-9۰-۹]{10,11}"
+      placeholder="مثلاً 09151234567"
+      required
+    >
+
+    <label>نوع ملک</label>
+    <select name="نوع ملک" required>
+      <option value="">انتخاب کنید</option>
+      <option>آپارتمان</option>
+      <option>خانه</option>
+      <option>مغازه</option>
+      <option>زمین</option>
+      <option>دفتر کار</option>
+      <option>سایر</option>
+    </select>
+
+    <label>بودجه / قیمت تقریبی (تومان)</label>
+    <input
+      type="number"
+      name="قیمت"
+      inputmode="numeric"
+      min="0"
+      placeholder="مثلاً ۵۰۰۰۰۰۰۰۰۰"
+    >
+
+    <label>محدوده</label>
+    <input type="text" name="محدوده" placeholder="مثلاً بهاران">
+
+    <label>توضیحات</label>
+    <textarea
+      name="توضیحات"
+      placeholder="مثلاً دو خوابه، آسانسور داشته باشد و..."
+    ></textarea>
+
+    <button class="submit" type="submit">
+      ثبت درخواست خرید
+    </button>
+
+  </form>
+</div>
+</section>
+
+<!-- فروش ملک -->
+<section id="sell" class="section">
+<div class="card">
+
+  <button class="back" onclick="show('submitChoice')">
+    ← برگشت
+  </button>
+
+  <h2>ملک برای فروش دارم، می‌خوام بسپرم</h2>
+
+  <p>
+    مشخصات اولیه ملک را وارد کنید؛ برای هماهنگی با شما تماس می‌گیریم.
+  </p>
+
+  <form onsubmit="sendForm(event,'فروش ملک')">
+
+    <label>نام</label>
+    <input type="text" name="نام" placeholder="نام شما" required>
+
+    <label>شماره موبایل</label>
+    <input
+      type="tel"
+      name="شماره موبایل"
+      inputmode="numeric"
+      pattern="[0-9۰-۹]{10,11}"
+      placeholder="مثلاً 09151234567"
+      required
+    >
+
+    <label>نوع ملک</label>
+    <select name="نوع ملک" required>
+      <option value="">انتخاب کنید</option>
+      <option>آپارتمان</option>
+      <option>خانه</option>
+      <option>مغازه</option>
+      <option>زمین</option>
+      <option>دفتر کار</option>
+      <option>سایر</option>
+    </select>
+
+    <label>متراژ</label>
+    <input
+      type="number"
+      name="متراژ"
+      inputmode="numeric"
+      min="1"
+      placeholder="مثلاً ۹۰"
+    >
+
+    <label>محدوده</label>
+    <input type="text" name="محدوده" placeholder="مثلاً بهاران">
+
+    <label>قیمت پیشنهادی (تومان)</label>
+    <input
+      type="number"
+      name="قیمت"
+      inputmode="numeric"
+      min="0"
+      placeholder="مثلاً ۵۰۰۰۰۰۰۰۰۰"
+    >
+
+    <label>توضیحات</label>
+    <textarea
+      name="توضیحات"
+      placeholder="توضیحات تکمیلی ملک..."
+    ></textarea>
+
+    <label>نمایش فایل در سایت</label>
+    <select name="نمایش فایل" required>
+      <option value="خیر">خیر</option>
+      <option value="بله">بله</option>
+    </select>
+
+    <button class="submit" type="submit">
+      ثبت اطلاعات ملک
+    </button>
+
+  </form>
+</div>
+</section>
+
+<!-- ثبت موفق -->
+<section id="success" class="section success-screen">
+<div class="success-box">
+
+  <div class="success-icon">✓</div>
+
+  <div class="success-title">
+    ثبت با موفقیت انجام شد!
+  </div>
+
+  <div class="success-text">
+    اطلاعات شما با موفقیت دریافت شد.<br>
+    درخواست شما در املاک حیرانی ثبت گردید.
+  </div>
+
+  <div class="thanks">
+    🤝 سپاسگزاریم از اعتماد شما
+  </div>
+
+  <div class="tracking-card">
+    <div class="tracking-title">کد رهگیری شما</div>
+    <div id="trackingCode" class="tracking-code">----</div>
+    <div class="tracking-note">
+      این کد را برای پیگیری نزد خود نگه دارید.
+    </div>
+  </div>
+
+  <div class="success-contact-text">
+    برای تماس مستقیم، دکمه زیر را لمس کنید
+  </div>
+
+  <a class="success-contact" href="tel:09159299556">
+    📞 تماس با املاک حیرانی
+    <span class="success-contact-number">
+      09159299556
+    </span>
+  </a>
+
+  <button class="success-home" onclick="showSection('home')">
+    🏠 بازگشت به صفحه اصلی
+  </button>
+
+</div>
+</section>
+
+</div>
+
+<script>
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwYT9IDyRDb6z4Ch5oew5W2_vQrmegGGcotAeP-xHhkYdwfkomX3EHA8iAsSv1RLAgH/exec";
+
+let currentSection="home";
+
+function show(id){
+
+  document.querySelectorAll('.section')
+    .forEach(s=>s.classList.remove('active'));
+
+  const success=document.getElementById('success');
+
+  if(success)
+    success.classList.remove('active');
+
+  const target=document.getElementById(id);
+
+  if(target)
+    target.classList.add('active');
+
+  currentSection=id;
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+  if(id==='home')
+    loadListings();
+}
+
+function getTrackingCode(phone){
+
+  const value=String(phone||"");
+
+  const normalized=value
+    .replace(/[۰-۹]/g,d=>
+      String("۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+    )
+    .replace(/[٠-٩]/g,d=>
+      String("٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    )
+    .replace(/\D/g,"");
+
+  return normalized.slice(-4);
+}
+
+async function sendForm(event,requestType){
+
+  event.preventDefault();
+
+  const form=event.target;
+
+  const button=form.querySelector('.submit');
+
+  button.disabled=true;
+
+  button.innerText='در حال ثبت اطلاعات...';
+
+  const formData=new FormData(form);
+
+  const data={};
+
+  formData.forEach((value,key)=>{
+    data[key]=value
+  });
+
+  data['نوع درخواست']=requestType;
+
+  data['تاریخ']=new Date().toLocaleString('fa-IR');
+
+  const trackingCode=
+    getTrackingCode(data['شماره موبایل']);
+
+  try{
+
+    await fetch(SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      body:JSON.stringify(data)
+    });
+
+    form.reset();
+
+    document.getElementById('trackingCode')
+      .innerText=trackingCode||'----';
+
+    show('success');
+
+  }catch(error){
+
+    alert(
+      'در ارسال اطلاعات مشکلی پیش آمد.\nلطفاً دوباره تلاش کنید.'
+    );
+
+    console.error(error);
+
+  }finally{
+
+    button.disabled=false;
+
+    if(
+      requestType==='سپردن ملک' ||
+      requestType==='فروش ملک'
+    )
+      button.innerText='ثبت اطلاعات ملک';
+
+    else if(requestType==='خرید ملک')
+      button.innerText='ثبت درخواست خرید';
+
+    else
+      button.innerText='ثبت درخواست';
+  }
+}
+
+window.addEventListener('popstate',()=>{
+  show('home')
+});
+
+window.addEventListener('load',()=>{
+
+  const hash=window.location.hash.replace('#','');
+
+  const valid=[
+    'submitChoice',
+    'search',
+    'submit',
+    'buy',
+    'sell',
+    'success'
+  ];
+
+  if(valid.includes(hash))
+    show(hash);
+  else
+    show('home');
+
+});
+
+function normalizeNumber(value){
+
+  return String(value)
+    .replace(/[۰-۹]/g,d=>
+      String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d))
+    )
+    .replace(/[٠-٩]/g,d=>
+      String('٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    )
+    .replace(/,/g,'')
+    .trim();
+}
+
+function formatNumberFa(number){
+
+  return Number(number).toLocaleString('fa-IR');
+
+}
+
+function formatRentPrice(value){
+
+  if(
+    value===null ||
+    value===undefined ||
+    String(value).trim()===''
+  )
+    return '';
+
+  const n=Number(normalizeNumber(value));
+
+  if(!Number.isFinite(n))
+    return String(value);
+
+  const million=
+    n>=1000000 ? n/1000000 : n;
+
+  return `${formatNumberFa(million)} میلیون`;
+}
+
+function formatSalePrice(value){
+
+  if(
+    value===null ||
+    value===undefined ||
+    String(value).trim()===''
+  )
+    return '';
+
+  const n=Number(normalizeNumber(value));
+
+  if(!Number.isFinite(n))
+    return String(value);
+
+  if(n>=1000000000){
+
+    const b=n/1000000000;
+
+    const r=
+      Number.isInteger(b)
+      ? b
+      : Math.round(b*10)/10;
+
+    return `${formatNumberFa(r)} میلیارد`;
+  }
+
+  if(n>=1000000){
+
+    const m=n/1000000;
+
+    const r=
+      Number.isInteger(m)
+      ? m
+      : Math.round(m*10)/10;
+
+    return `${formatNumberFa(r)} میلیون`;
+  }
+
+  return `${formatNumberFa(n)} تومان`;
+}
+
+function createListing(item){
+
+  const div=document.createElement('div');
+
+  div.className='listing';
+
+  const category=
+    String(item['دسته']||'').trim();
+
+  const type=
+    item['نوع ملک']||'ملک';
+
+  const area=
+    item['متراژ']
+      ? normalizeNumber(item['متراژ'])+' متر'
+      : '';
+
+  const location=
+    item['محدوده']
+      ? 'محدوده '+item['محدوده']
+      : '';
+
+  const description=
+    item['توضیحات']||'';
+
+  let html='';
+
+  html+=
+    `<div class="listing-title">${type}</div>
+     <div class="listing-text">
+     ${area}${area&&location?' • ':''}${location}
+     </div>`;
+
+  if(category==='رهن و اجاره'){
+
+    const rent=
+      formatRentPrice(item['رهن']);
+
+    const monthly=
+      formatRentPrice(item['اجاره']);
+
+    if(rent||monthly){
+
+      html+=
+        `<div class="listing-text" style="margin-top:6px">`;
+
+      if(rent)
+        html+=`رهن: ${rent}<br>`;
+
+      if(monthly)
+        html+=`اجاره: ${monthly}`;
+
+      html+='</div>';
+    }
+  }
+
+  if(category==='خرید و فروش'){
+
+    const price=
+      formatSalePrice(item['قیمت']);
+
+    if(price)
+      html+=
+        `<div class="listing-text" style="margin-top:6px">
+          قیمت: ${price}
+        </div>`;
+  }
+
+  if(description)
+    html+=
+      `<div class="listing-text" style="margin-top:8px">
+        ${description}
+      </div>`;
+
+  div.innerHTML=html;
+
+  return div;
+}
+
+let listingsLoaded=false;
+
+function renderGroup(box,items,emptyText){
+
+  box.innerHTML='';
+
+  if(items.length){
+
+    items.forEach(item=>
+      box.appendChild(createListing(item))
+    );
+
+  }else{
+
+    const empty=
+      document.createElement('div');
+
+    empty.className='empty';
+
+    empty.innerText=emptyText;
+
+    box.appendChild(empty);
+  }
+}
+
+async function loadListings(){
+
+  if(listingsLoaded)
+    return;
+
+  const rentBox=
+    document.getElementById('rentListings');
+
+  const buySellBox=
+    document.getElementById('buySellListings');
+
+  if(!rentBox||!buySellBox)
+    return;
+
+  try{
+
+    const cached=
+      sessionStorage.getItem('heyraniListings');
+
+    if(cached){
+
+      const parsed=
+        JSON.parse(cached);
+
+      renderListings(parsed);
+
+      listingsLoaded=true;
+    }
+
+    const response=
+      await fetch(
+        SCRIPT_URL,
+        {cache:'no-store'}
+      );
+
+    const listings=
+      await response.json();
+
+    sessionStorage.setItem(
+      'heyraniListings',
+      JSON.stringify(listings)
+    );
+
+    renderListings(listings);
+
+    listingsLoaded=true;
+
+  }catch(error){
+
+    console.log(error);
+
+    if(!listingsLoaded){
+
+      renderGroup(
+        rentBox,
+        [],
+        'فایل‌ها فعلاً بارگذاری نشدند.'
+      );
+
+      renderGroup(
+        buySellBox,
+        [],
+        'فایل‌ها فعلاً بارگذاری نشدند.'
+      );
+    }
+  }
+}
+
+function renderListings(listings){
+
+  const visible=
+    Array.isArray(listings)
+      ? listings.filter(
+          item=>
+            String(item['نمایش فایل']||'').trim()==='بله'
+        )
+      : [];
+
+  const rent=
+    visible.filter(
+      item=>
+        String(item['دسته']||'').trim()==='رهن و اجاره'
+    );
+
+  const buySell=
+    visible.filter(
+      item=>
+        String(item['دسته']||'').trim()==='خرید و فروش'
+    );
+
+  renderGroup(
+    document.getElementById('rentListings'),
+    rent,
+    'فعلاً فایل رهن و اجاره‌ای موجود نیست.'
+  );
+
+  renderGroup(
+    document.getElementById('buySellListings'),
+    buySell,
+    'فعلاً فایل خرید و فروشی موجود نیست.'
+  );
+}
+
+loadListings();
+
+</script>
+
+</body>
+</html>
